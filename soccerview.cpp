@@ -469,6 +469,11 @@ void GLSoccerView::drawFieldLines(FieldDimensions& dimensions)
     drawArc(center, radius - half_thickness, radius + half_thickness, a1, a2,
             FieldZ);
   }
+  vector2d a,b,c;
+  a.x = a.y = 0;
+  b.x = 50;b.y = 0;
+  c.x = 0;c.y = 50;
+  drawTriangle(a, b, c, FieldZ);
 }
 
 void GLSoccerView::drawBall(vector2d loc)
@@ -487,6 +492,14 @@ void GLSoccerView::drawBalls()
       drawBall(balls[i][j]);
     }
   }
+}
+
+void GLSoccerView::drawTriangle(vector2d loc1, vector2d loc2, vector2d loc3, double z) {
+    glBegin(GL_TRIANGLES);
+    glVertex3d(loc1.x,loc1.y,z);
+    glVertex3d(loc2.x,loc2.y,z);
+    glVertex3d(loc3.x,loc3.y,z);
+    glEnd();
 }
 
 void GLSoccerView::drawRobots()
