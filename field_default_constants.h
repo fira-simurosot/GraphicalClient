@@ -28,8 +28,8 @@
 
 namespace FieldConstants {
 
-const double kFieldLength = 250.0;
-const double kFieldWidth = 180.0;
+const double kFieldLength = 300.0;
+const double kFieldWidth = 200.0;
 const double kGoalWidth = 40.0;
 const double kGoalDepth = 15.0;
 const double kBoundaryWidth = 50.0;
