@@ -81,6 +81,41 @@ GLSoccerView::GLSoccerView(QWidget* parent) :
     tLastRedraw = 0;
 }
 
+void GLSoccerView::updatePacket(const Packet &_packet) {
+    graphicsMutex.lock();
+
+    ball.x = ball.y = 5000;
+    robots.clear();
+    for(int i=0; i<_ROBOT_COUNT; i++){
+        Robot robot;
+        robot.loc.set(_packet.blue[i].pos.x, _packet.blue[i].pos.x);
+        robot.id = i;
+        robot.hasAngle = true;
+        if(robot.hasAngle) robot.angle = DEG(std::atan2(_packet.blue[i].dir.y,_packet.blue[i].dir.x));
+        robot.team = teamBlue;
+        robot.cameraID = 0;
+        robot.conf = 0.9;
+        robots.append(robot);
+    }
+
+    for(int i=0; i<_ROBOT_COUNT; i++){
+        Robot robot;
+        robot.loc.set(_packet.yellow[i].pos.x, _packet.yellow[i].pos.x);
+        robot.id = i;
+        robot.hasAngle = true;
+        if(robot.hasAngle) robot.angle = DEG(std::atan2(_packet.blue[i].dir.y,_packet.yellow[i].dir.x));
+        robot.team = teamYellow;
+        robot.cameraID = 0;
+        robot.conf = 0.9;
+        robots.append(robot);
+    }
+
+    ball.x = _packet.ball.pos.x;
+    ball.y = _packet.ball.pos.y;
+    graphicsMutex.unlock();
+    postRedraw();
+}
+
 void GLSoccerView::redraw()
 {
     if(GetTimeSec()-tLastRedraw<MinRedrawInterval)
@@ -291,7 +326,7 @@ void GLSoccerView::paintEvent(QPaintEvent* event)
     glLoadIdentity();
     drawFieldLines(fieldDim);
     drawRobots();
-    drawBalls();
+    drawBall(ball);
     //vectorTextTest();
     glPopMatrix();
     swapBuffers();
@@ -488,17 +523,7 @@ void GLSoccerView::drawFieldLines(FieldDimensions& dimensions)
         c.y = triangle.p3_y;
         drawTriangle(a, b, c, FieldZ);
     }
-//    vector2d b;
-//    b.x = b.y = 0;
-//    drawRobot(b, 30, 1, 0, 1, true);    b.x = b.y = 20;
 
-//    drawRobot(b, 40, 0, 10, 2, true);    b.x = b.y = -20;
-
-//    drawRobot(b, 90, 0.3, 2, 0, true);    b.x = b.y = 60;
-
-//    drawRobot(b, 120, 0.7, 5, 2, true);    b.x = 100; b.y = 0;
-
-//    drawBall(b);
 }
 
 void GLSoccerView::drawBall(vector2d loc)
@@ -508,15 +533,6 @@ void GLSoccerView::drawBall(vector2d loc)
     glColor3d(0.8706,0.3490,0.0);
     drawArc(loc,1.5,2.1,-M_PI,M_PI,BallZ);
 
-}
-
-void GLSoccerView::drawBalls()
-{
-    for(int i=0; i<balls.size(); i++){
-        for(int j=0; j<balls[i].size(); j++){
-            drawBall(balls[i][j]);
-        }
-    }
 }
 
 void GLSoccerView::drawTriangle(vector2d loc1, vector2d loc2, vector2d loc3, double z) {
@@ -530,9 +546,7 @@ void GLSoccerView::drawTriangle(vector2d loc1, vector2d loc2, vector2d loc3, dou
 void GLSoccerView::drawRobots()
 {
     for(int i=0; i<robots.size(); i++){
-        for(int j=0; j<robots[i].size(); j++){
-            Robot r = robots[i][j];
-            drawRobot(r.loc,r.angle,r.conf,r.id,r.team,r.hasAngle);
-        }
+        Robot r = robots[i];
+        drawRobot(r.loc,r.angle,r.conf,r.id,r.team,r.hasAngle);
     }
 }

@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui opengl
+QT       += core gui opengl network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -17,7 +17,8 @@ SOURCES += main.cpp\
     gltext.cpp \
     soccerview.cpp \
     field_default_constants.cpp \
-    field.cpp
+    field.cpp \
+    packet.cpp
 
 HEADERS  += mainwindow.h \
     gltext.h \
@@ -32,4 +33,5 @@ HEADERS  += mainwindow.h \
     pose.h \
     quaternion.h \
     range.h \
-    util.h
+    util.h \
+    packet.h
