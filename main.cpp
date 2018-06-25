@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include <QApplication>
-#include "client.h"
+#include "drawpacket.h"
 #include "packet.h"
 #include <stdio.h>
 #include <QtGui>
@@ -21,11 +21,13 @@ protected:
     {
         static const double minDuration = 0.01; //100FPS
         QUdpSocket* socket = new QUdpSocket();
-        //        socket->connectToHost("224.5.23.2", 1234);
-        //        socket->open(QIODevice::ReadOnly);
-        socket->bind(QHostAddress::AnyIPv4, 1234, QUdpSocket::ShareAddress);
+        QUdpSocket* socketD = new QUdpSocket();
+        socket->bind(QHostAddress::AnyIPv4, 10020, QUdpSocket::ShareAddress);
         socket->joinMulticastGroup(QHostAddress("224.5.23.2"));
+        socketD->bind(QHostAddress::AnyIPv4, 10010, QUdpSocket::ShareAddress);
+        socketD->joinMulticastGroup(QHostAddress("224.5.23.1"));
         Packet packet;
+        DrawPacket dPacket;
         while(runApp) {
             while (socket->hasPendingDatagrams()) {
                 QByteArray Buffer;
@@ -37,6 +39,17 @@ protected:
                 qDebug() << Buffer.data() << senderPort << sender.toString();
                 packet.parse(Buffer.data(), Buffer.size());
                 view->updatePacket(packet);
+            }
+            while (socketD->hasPendingDatagrams()) {
+                QByteArray Buffer;
+                Buffer.resize(socketD->pendingDatagramSize());
+
+                QHostAddress sender;
+                quint16 senderPort;
+                socketD->readDatagram(Buffer.data(),Buffer.size(),&sender,&senderPort);
+                qDebug() << Buffer.data() << senderPort << sender.toString();
+//                dPacket.parse(Buffer.data(), Buffer.size());
+                view->updateDraws(dPacket);
             }
             Sleep(minDuration);
         }

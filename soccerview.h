@@ -36,6 +36,7 @@
 #include "util.h"
 #include "gltext.h"
 #include "packet.h"
+#include "drawpacket.h"
 
 #ifndef SOCCERVIEW_H
 #define SOCCERVIEW_H
@@ -45,11 +46,11 @@ using namespace std;
 #define FIELD_COLOR 0.0,0.5686,0.0980,1.0
 #define FIELD_LINES_COLOR 1.0,1.0,1.0,1.0
 
-class GLSoccerView : public QGLWidget{
+class GLSoccerView : public QGLWidget {
     Q_OBJECT
 
 public:
-    struct FieldDimensions{
+    struct FieldDimensions {
         vector<FieldLine*> lines;
         vector<FieldCircularArc*> arcs;
         vector<FieldTriangle*> tris;
@@ -59,7 +60,7 @@ public:
         FieldDimensions();
     };
 
-    struct Robot{
+    struct Robot {
         bool hasAngle;
         vector2d loc;
         double angle;
@@ -69,11 +70,11 @@ public:
         int cameraID;
     };
 
-    typedef enum{
+    typedef enum {
         teamUnknown = 0,
         teamBlue,
         teamYellow
-    }TeamTypes;
+    } TeamTypes;
 
 private:
     static const double minZValue;
@@ -111,10 +112,11 @@ private:
     double tLastRedraw;
 
     FieldDimensions fieldDim;
-
+    DrawPacket debugs;
 private:
     void drawFieldLines(FieldDimensions &dimensions);
     void drawRobots();
+    void drawDebugs();
     void drawTriangle(vector2d loc1, vector2d loc2, vector2d loc3, double z);
     void drawQuad(vector2d loc1, vector2d loc2, double z=0.0);
     void drawQuad(double x1, double y1, double x2, double y2, double z=0.0){drawQuad(vector2d(x1,y1),vector2d(x2,y2),z);}
@@ -141,6 +143,7 @@ protected:
 public:
     GLSoccerView(QWidget *parent = 0);
     void updatePacket(const Packet& _packet);
+    void updateDraws(const DrawPacket& _packet);
 public slots:
     void resetView();
 private slots:

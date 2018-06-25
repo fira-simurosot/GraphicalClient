@@ -18,7 +18,8 @@ SOURCES += main.cpp\
     soccerview.cpp \
     field_default_constants.cpp \
     field.cpp \
-    packet.cpp
+    packet.cpp \
+    drawpacket.cpp
 
 HEADERS  += mainwindow.h \
     gltext.h \
@@ -34,4 +35,5 @@ HEADERS  += mainwindow.h \
     quaternion.h \
     range.h \
     util.h \
-    packet.h
+    packet.h \
+    drawpacket.h

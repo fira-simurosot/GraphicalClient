@@ -82,11 +82,11 @@ GLSoccerView::GLSoccerView(QWidget* parent) :
 }
 
 void GLSoccerView::updatePacket(const Packet &_packet) {
-    graphicsMutex.lock();
 
+    graphicsMutex.lock();
     ball.x = ball.y = 5000;
     robots.clear();
-    for(int i=0; i<_ROBOT_COUNT; i++){
+    for(int i=0; i < _ROBOT_COUNT; i++){
         Robot robot;
         robot.loc.set(_packet.blue[i].pos.x, _packet.blue[i].pos.x);
         robot.id = i;
@@ -98,7 +98,7 @@ void GLSoccerView::updatePacket(const Packet &_packet) {
         robots.append(robot);
     }
 
-    for(int i=0; i<_ROBOT_COUNT; i++){
+    for(int i=0; i < _ROBOT_COUNT; i++){
         Robot robot;
         robot.loc.set(_packet.yellow[i].pos.x, _packet.yellow[i].pos.x);
         robot.id = i;
@@ -112,6 +112,27 @@ void GLSoccerView::updatePacket(const Packet &_packet) {
 
     ball.x = _packet.ball.pos.x;
     ball.y = _packet.ball.pos.y;
+    graphicsMutex.unlock();
+    postRedraw();
+}
+
+void GLSoccerView::updateDraws(const DrawPacket &_packet) {
+    graphicsMutex.lock();
+
+    debugs.circles.clear();
+    debugs.vectors.clear();
+    debugs.polygons.clear();
+    debugs.rects.clear();
+    debugs.segments.clear();
+    debugs.texts.clear();
+
+    for (auto a : _packet.vectors) debugs.vectors.push_back(a);
+    for (auto a : _packet.circles) debugs.circles.push_back(a);
+    for (auto a : _packet.texts) debugs.texts.push_back(a);
+    for (auto a : _packet.segments) debugs.segments.push_back(a);
+    for (auto a : _packet.polygons) debugs.polygons.push_back(a);
+    for (auto a : _packet.rects) debugs.rects.push_back(a);
+
     graphicsMutex.unlock();
     postRedraw();
 }
@@ -422,8 +443,10 @@ void GLSoccerView::drawRobot(int team, bool hasAngle, bool useDisplayLists)
     }
     drawQuad(-5,5,-4.5,-5,RobotZ+0.01);
     drawQuad(-5,5,5,4.5,RobotZ+0.01);
-    drawQuad(4.5,5,5,-5,RobotZ+0.01);
     drawQuad(-5,-4.5,5,-5,RobotZ+0.01);
+
+    glColor3d(1,0,0);
+    drawQuad(4,5,5,-5,RobotZ+0.01);
 
 
     if(hasAngle) {
@@ -523,6 +546,9 @@ void GLSoccerView::drawFieldLines(FieldDimensions& dimensions)
         c.y = triangle.p3_y;
         drawTriangle(a, b, c, FieldZ);
     }
+    vector2d a;
+    a.x = a.y = 0;
+    drawRobot(a, 10, 0.9, 3, 1, true);
 
 }
 
@@ -543,10 +569,13 @@ void GLSoccerView::drawTriangle(vector2d loc1, vector2d loc2, vector2d loc3, dou
     glEnd();
 }
 
-void GLSoccerView::drawRobots()
-{
+void GLSoccerView::drawRobots() {
     for(int i=0; i<robots.size(); i++){
         Robot r = robots[i];
         drawRobot(r.loc,r.angle,r.conf,r.id,r.team,r.hasAngle);
     }
+}
+
+void GLSoccerView::drawDebugs() {
+
 }
