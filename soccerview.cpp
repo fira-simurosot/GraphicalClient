@@ -369,16 +369,7 @@ void GLSoccerView::drawRobot(int team, bool hasAngle, bool useDisplayLists)
         break;
     }
     }
-    double theta1 = hasAngle?RAD(40):0.0;
-    double theta2 = 2.0*M_PI - theta1;
-    drawArc(0,0,0,9.,theta1, theta2, RobotZ);
-    if(hasAngle){
-        glBegin(GL_TRIANGLES);
-        glVertex3d(0,0,RobotZ);
-        glVertex3d(9.0*cos(theta1),9.0*sin(theta1),RobotZ);
-        glVertex3d(9.0*cos(theta2),9.0*sin(theta2),RobotZ);
-        glEnd();
-    }
+    drawQuad(-5,5,5,-5,RobotZ);
 
     switch ( team ){
     case teamBlue:{
@@ -394,9 +385,20 @@ void GLSoccerView::drawRobot(int team, bool hasAngle, bool useDisplayLists)
         break;
     }
     }
-    drawArc(0,0,8.,9.,theta1, theta2, RobotZ+0.01);
-    if(hasAngle)
-        drawQuad(9.*cos(theta1)-1.,9.*sin(theta1), 9.*cos(theta2),9.*sin(theta2),RobotZ+0.01);
+    drawQuad(-5,5,-4.5,-5,RobotZ+0.01);
+    drawQuad(-5,5,5,4.5,RobotZ+0.01);
+    drawQuad(4.5,5,5,-5,RobotZ+0.01);
+    drawQuad(-5,-4.5,5,-5,RobotZ+0.01);
+
+
+    if(hasAngle) {
+        double theta1 = hasAngle?RAD(40):0.0;
+        double theta2 = 2.0*M_PI - theta1;
+        glColor3d(0.2745,0.2745,0.2745);
+        drawQuad(-5.*cos(theta1),5.*sin(theta1), 5.*cos(theta2), -5.*sin(theta2) + 1,RobotZ+0.02);
+        drawQuad(-5.*cos(theta2),-5.*sin(theta1), 5.*cos(theta1), 5.*sin(theta2) - 1 ,RobotZ+0.02);
+
+    }
 }
 
 void GLSoccerView::drawRobot(vector2d loc, double theta, double conf, int robotID, int team, bool hasAngle)
@@ -425,7 +427,7 @@ void GLSoccerView::drawRobot(vector2d loc, double theta, double conf, int robotI
         snprintf(buf,1023,"%X",robotID);
     else
         snprintf(buf,1023,"?");
-    glText.drawString(loc,0,10,buf,GLText::CenterAligned,GLText::MiddleAligned);
+    glText.drawString(loc,0,5,buf,GLText::CenterAligned,GLText::MiddleAligned);
     switch ( team ){
     case teamBlue:{
         glColor3d(0.0706, 0.2314, 0.6275);
@@ -488,7 +490,15 @@ void GLSoccerView::drawFieldLines(FieldDimensions& dimensions)
     }
     vector2d b;
     b.x = b.y = 0;
-    drawRobot(b, 0, 0, 0, 1, true);
+    drawRobot(b, 30, 1, 0, 1, true);    b.x = b.y = 20;
+
+    drawRobot(b, 40, 0, 10, 2, true);    b.x = b.y = -20;
+
+    drawRobot(b, 90, 0.3, 2, 0, true);    b.x = b.y = 60;
+
+    drawRobot(b, 120, 0.7, 5, 2, true);    b.x = 100; b.y = 0;
+
+    drawBall(b);
 }
 
 void GLSoccerView::drawBall(vector2d loc)
