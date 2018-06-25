@@ -51,6 +51,7 @@ public:
   struct FieldDimensions{
     vector<FieldLine*> lines;
     vector<FieldCircularArc*> arcs;
+    vector<FieldTriangle*> tris;
     double field_length;
     double field_width;
     double boundary_width;
