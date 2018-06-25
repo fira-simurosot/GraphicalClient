@@ -488,17 +488,17 @@ void GLSoccerView::drawFieldLines(FieldDimensions& dimensions)
         c.y = triangle.p3_y;
         drawTriangle(a, b, c, FieldZ);
     }
-    vector2d b;
-    b.x = b.y = 0;
-    drawRobot(b, 30, 1, 0, 1, true);    b.x = b.y = 20;
+//    vector2d b;
+//    b.x = b.y = 0;
+//    drawRobot(b, 30, 1, 0, 1, true);    b.x = b.y = 20;
 
-    drawRobot(b, 40, 0, 10, 2, true);    b.x = b.y = -20;
+//    drawRobot(b, 40, 0, 10, 2, true);    b.x = b.y = -20;
 
-    drawRobot(b, 90, 0.3, 2, 0, true);    b.x = b.y = 60;
+//    drawRobot(b, 90, 0.3, 2, 0, true);    b.x = b.y = 60;
 
-    drawRobot(b, 120, 0.7, 5, 2, true);    b.x = 100; b.y = 0;
+//    drawRobot(b, 120, 0.7, 5, 2, true);    b.x = 100; b.y = 0;
 
-    drawBall(b);
+//    drawBall(b);
 }
 
 void GLSoccerView::drawBall(vector2d loc)
