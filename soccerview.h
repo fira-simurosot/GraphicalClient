@@ -51,6 +51,7 @@ public:
   struct FieldDimensions{
     vector<FieldLine*> lines;
     vector<FieldCircularArc*> arcs;
+    vector<FieldTriangle*> tris;
     double field_length;
     double field_width;
     double boundary_width;
@@ -114,6 +115,7 @@ private:
   void drawFieldLines(FieldDimensions &dimensions);
   void drawRobots();
   void drawBalls();
+  void drawTriangle(vector2d loc1, vector2d loc2, vector2d loc3, double z);
   void drawQuad(vector2d loc1, vector2d loc2, double z=0.0);
   void drawQuad(double x1, double y1, double x2, double y2, double z=0.0){drawQuad(vector2d(x1,y1),vector2d(x2,y2),z);}
   void drawArc(vector2d loc, double r1, double r2, double theta1, double theta2, double z=0.0, double dTheta = -1);

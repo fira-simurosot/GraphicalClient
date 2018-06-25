@@ -28,8 +28,8 @@
 
 namespace FieldConstants {
 
-const double kFieldLength = 250.0;
-const double kFieldWidth = 180.0;
+const double kFieldLength = 220.0;
+const double kFieldWidth = 200.0;
 const double kGoalWidth = 40.0;
 const double kGoalDepth = 15.0;
 const double kBoundaryWidth = 50.0;
@@ -39,6 +39,9 @@ extern const FieldLine kFieldLines[];
 
 extern const std::size_t kNumFieldArcs;
 extern const FieldCircularArc kFieldArcs[];
+
+extern const std::size_t kNumFieldTriangles;
+extern const FieldTriangle kFieldTris[];
 
 }
 #endif // FIELD_H

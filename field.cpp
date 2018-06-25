@@ -86,3 +86,34 @@ FieldCircularArc::FieldCircularArc(const QString& marking_name) :
 FieldCircularArc::~FieldCircularArc() {
 
 }
+
+FieldTriangle::FieldTriangle(QString name_, double p1_x_, double p1_y_, double p2_x_, double p2_y_, double p3_x_, double p3_y_) :
+    name(name_),
+    p1_x(p1_x_),
+    p1_y(p1_y_),
+    p2_x(p2_x_),
+    p2_y(p2_y_),
+    p3_x(p3_x_),
+    p3_y(p3_y_) {}
+
+FieldTriangle::FieldTriangle(const FieldTriangle &other) :
+    name(other.name),
+    p1_x(other.p1_x),
+    p1_y(other.p1_y),
+    p2_x(other.p2_x),
+    p2_y(other.p2_y),
+    p3_x(other.p3_x),
+    p3_y(other.p3_y) {}
+
+FieldTriangle::FieldTriangle(const QString &marking_name) :
+    name(marking_name),
+    p1_x(),
+    p1_y(),
+    p2_x(),
+    p2_y(),
+    p3_x(),
+    p3_y() {}
+
+FieldTriangle::~FieldTriangle() {
+
+}
