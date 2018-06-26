@@ -11,6 +11,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = parsian-graphical
 TEMPLATE = app
 
+CONFIG+= c+11
 
 SOURCES += main.cpp\
         mainwindow.cpp \
@@ -18,8 +19,10 @@ SOURCES += main.cpp\
     soccerview.cpp \
     field_default_constants.cpp \
     field.cpp \
-    packet.cpp \
-    drawpacket.cpp
+    proto/cpp/messages_parsian_simurosot_data_wrapper.pb.cc \
+    proto/cpp/messages_parsian_simurosot_debugs.pb.cc \
+    proto/cpp/messages_parsian_simurosot_detection.pb.cc \
+    proto/cpp/messages_parsian_simurosot_worldmodel.pb.cc
 
 HEADERS  += mainwindow.h \
     gltext.h \
@@ -35,5 +38,11 @@ HEADERS  += mainwindow.h \
     quaternion.h \
     range.h \
     util.h \
-    packet.h \
-    drawpacket.h
+    proto/cpp/messages_parsian_simurosot_data_wrapper.pb.h \
+    proto/cpp/messages_parsian_simurosot_debugs.pb.h \
+    proto/cpp/messages_parsian_simurosot_detection.pb.h \
+    proto/cpp/messages_parsian_simurosot_worldmodel.pb.h
+
+INCLUDEPATH+=proto/cpp
+INCLUDEPATH+=/usr/local/Cellar/protobuf/3.6.0/include
+LIBS+=-L/usr/local/Cellar/protobuf/3.6.0/lib/ -lprotobuf -lprotobuf-lite

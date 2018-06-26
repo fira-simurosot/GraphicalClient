@@ -1,7 +1,5 @@
 #include "mainwindow.h"
 #include <QApplication>
-#include "drawpacket.h"
-#include "packet.h"
 #include <stdio.h>
 #include <QtGui>
 #include <QApplication>
@@ -9,6 +7,7 @@
 #include "timer.h"
 #include <QtNetwork>
 #include <QHostAddress>
+#include <messages_parsian_simurosot_data_wrapper.pb.h>
 
 GLSoccerView *view;
 
@@ -21,35 +20,19 @@ protected:
     {
         static const double minDuration = 0.01; //100FPS
         QUdpSocket* socket = new QUdpSocket();
-        QUdpSocket* socketD = new QUdpSocket();
         socket->bind(QHostAddress::AnyIPv4, 10020, QUdpSocket::ShareAddress);
         socket->joinMulticastGroup(QHostAddress("224.5.23.2"));
-        socketD->bind(QHostAddress::AnyIPv4, 10010, QUdpSocket::ShareAddress);
-        socketD->joinMulticastGroup(QHostAddress("224.5.23.1"));
-        Packet packet;
-        DrawPacket dPacket;
+        DataWrapper packet;
         while(runApp) {
             while (socket->hasPendingDatagrams()) {
                 QByteArray Buffer;
                 Buffer.resize(socket->pendingDatagramSize());
-
                 QHostAddress sender;
                 quint16 senderPort;
                 socket->readDatagram(Buffer.data(),Buffer.size(),&sender,&senderPort);
                 qDebug() << Buffer.data() << senderPort << sender.toString();
-                packet.parse(Buffer.data(), Buffer.size());
+                packet.ParseFromArray(Buffer.data(), Buffer.size());
                 view->updatePacket(packet);
-            }
-            while (socketD->hasPendingDatagrams()) {
-                QByteArray Buffer;
-                Buffer.resize(socketD->pendingDatagramSize());
-
-                QHostAddress sender;
-                quint16 senderPort;
-                socketD->readDatagram(Buffer.data(),Buffer.size(),&sender,&senderPort);
-                qDebug() << Buffer.data() << senderPort << sender.toString();
-//                dPacket.parse(Buffer.data(), Buffer.size());
-                view->updateDraws(dPacket);
             }
             Sleep(minDuration);
         }

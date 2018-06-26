@@ -81,60 +81,83 @@ GLSoccerView::GLSoccerView(QWidget* parent) :
     tLastRedraw = 0;
 }
 
-void GLSoccerView::updatePacket(const Packet &_packet) {
+void GLSoccerView::updatePacket(const DataWrapper &_packet) {
 
     graphicsMutex.lock();
     ball.x = ball.y = 5000;
     robots.clear();
-    for(int i=0; i < _ROBOT_COUNT; i++){
-        Robot robot;
-        robot.loc.set(_packet.blue[i].pos.x, _packet.blue[i].pos.x);
-        robot.id = i;
-        robot.hasAngle = true;
-        if(robot.hasAngle) robot.angle = DEG(std::atan2(_packet.blue[i].dir.y,_packet.blue[i].dir.x));
-        robot.team = teamBlue;
-        robot.cameraID = 0;
-        robot.conf = 0.9;
-        robots.append(robot);
+    bool showRaw = true;
+    if (showRaw) {
+        if (_packet.has_detection()) {
+            updateDetection(_packet.detection());
+        }
+    } else {
+        if (_packet.has_worldmodel()) {
+            updateWorldModel(_packet.worldmodel());
+        }
     }
+    if (_packet.has_draws()) {
+        debugs = _packet.draws();
 
-    for(int i=0; i < _ROBOT_COUNT; i++){
-        Robot robot;
-        robot.loc.set(_packet.yellow[i].pos.x, _packet.yellow[i].pos.x);
-        robot.id = i;
-        robot.hasAngle = true;
-        if(robot.hasAngle) robot.angle = DEG(std::atan2(_packet.blue[i].dir.y,_packet.yellow[i].dir.x));
-        robot.team = teamYellow;
-        robot.cameraID = 0;
-        robot.conf = 0.9;
-        robots.append(robot);
     }
-
-    ball.x = _packet.ball.pos.x;
-    ball.y = _packet.ball.pos.y;
     graphicsMutex.unlock();
     postRedraw();
 }
 
-void GLSoccerView::updateDraws(const DrawPacket &_packet) {
-    graphicsMutex.lock();
+void GLSoccerView::updateDetection(const Frame &_frame) {
 
-    debugs.circles.clear();
-    debugs.vectors.clear();
-    debugs.polygons.clear();
-    debugs.rects.clear();
-    debugs.segments.clear();
-    debugs.texts.clear();
+    for(int i=0; i < _frame.robots_blue_size(); i++){
+        Robot robot;
+        robot.loc.set(_frame.robots_blue(i).x(), _frame.robots_blue(i).y());
+        robot.id = i;
+        robot.hasAngle = true;
+        if(robot.hasAngle) robot.angle = _frame.robots_blue(i).ang();
+        robot.team = teamBlue;
+        robot.conf = 0.5;
+        robots.append(robot);
+    }
 
-    for (auto a : _packet.vectors) debugs.vectors.push_back(a);
-    for (auto a : _packet.circles) debugs.circles.push_back(a);
-    for (auto a : _packet.texts) debugs.texts.push_back(a);
-    for (auto a : _packet.segments) debugs.segments.push_back(a);
-    for (auto a : _packet.polygons) debugs.polygons.push_back(a);
-    for (auto a : _packet.rects) debugs.rects.push_back(a);
+    for(int i=0; i < _frame.robots_yellow_size(); i++){
+        Robot robot;
+        robot.loc.set(_frame.robots_yellow(i).x(), _frame.robots_yellow(i).y());
+        robot.id = i;
+        robot.hasAngle = true;
+        if(robot.hasAngle) robot.angle = _frame.robots_yellow(i).ang();
+        robot.team = teamYellow;
+        robot.conf = 0.5;
+        robots.append(robot);
+    }
 
-    graphicsMutex.unlock();
-    postRedraw();
+    ball.x = _frame.ball().x();
+    ball.y = _frame.ball().y();
+}
+
+void GLSoccerView::updateWorldModel(const WorldModel &_wm) {
+
+    for(int i=0; i < _wm.robots_blue_size(); i++){
+        Robot robot;
+        robot.loc.set(_wm.robots_blue(i).pos().x(), _wm.robots_blue(i).pos().y());
+        robot.id = i;
+        robot.hasAngle = true;
+        if(robot.hasAngle) robot.angle = _wm.robots_blue(i).direction();
+        robot.team = teamBlue;
+        robot.conf = 0.5;
+        robots.append(robot);
+    }
+
+    for(int i=0; i < _wm.robots_yellow_size(); i++){
+        Robot robot;
+        robot.loc.set(_wm.robots_yellow(i).pos().x(), _wm.robots_yellow(i).pos().y());
+        robot.id = i;
+        robot.hasAngle = true;
+        if(robot.hasAngle) robot.angle = _wm.robots_yellow(i).direction();
+        robot.team = teamYellow;
+        robot.conf = 0.5;
+        robots.append(robot);
+    }
+
+    ball.x = _wm.ball().pos().x();
+    ball.y = _wm.ball().pos().y();
 }
 
 void GLSoccerView::redraw()

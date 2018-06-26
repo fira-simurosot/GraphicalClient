@@ -35,8 +35,7 @@
 #include "geometry.h"
 #include "util.h"
 #include "gltext.h"
-#include "packet.h"
-#include "drawpacket.h"
+#include <messages_parsian_simurosot_data_wrapper.pb.h>
 
 #ifndef SOCCERVIEW_H
 #define SOCCERVIEW_H
@@ -67,7 +66,6 @@ public:
         int id;
         double conf;
         int team;
-        int cameraID;
     };
 
     typedef enum {
@@ -112,7 +110,7 @@ private:
     double tLastRedraw;
 
     FieldDimensions fieldDim;
-    DrawPacket debugs;
+    Draws debugs;
 private:
     void drawFieldLines(FieldDimensions &dimensions);
     void drawRobots();
@@ -142,8 +140,9 @@ protected:
 
 public:
     GLSoccerView(QWidget *parent = 0);
-    void updatePacket(const Packet& _packet);
-    void updateDraws(const DrawPacket& _packet);
+    void updatePacket(const DataWrapper& _packet);
+    void updateDetection(const Frame& _frame);
+    void updateWorldModel(const WorldModel& _wm);
 public slots:
     void resetView();
 private slots:
