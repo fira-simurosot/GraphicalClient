@@ -66,6 +66,7 @@ public:
   
   GLText(QFont font = QFont());
   ~GLText();
+  void drawString(double x, double y, double angle, double size, const char* str, GLText::HAlignOptions hAlign=LeftAligned, GLText::VAlignOptions vAlign=MiddleAligned) {drawString(vector2d(x,y),angle,size,str,hAlign,vAlign);}
   void drawString(vector2d loc, double angle, double size, const char* str, GLText::HAlignOptions hAlign=LeftAligned, GLText::VAlignOptions vAlign=MiddleAligned);
   void drawGlyph(char glyph);
   void initializeGlyph(char ch);

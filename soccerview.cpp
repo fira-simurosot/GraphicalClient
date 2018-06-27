@@ -33,9 +33,10 @@ using FieldConstants::kFieldTris;
 
 const double GLSoccerView::minZValue = -10;
 const double GLSoccerView::maxZValue = 10;
-const double GLSoccerView::FieldZ = 1.0;
-const double GLSoccerView::RobotZ = 2.0;
-const double GLSoccerView::BallZ = 3.0;
+const double GLSoccerView::FieldZ  = 1.0;
+const double GLSoccerView::RobotZ  = 2.0;
+const double GLSoccerView::BallZ   = 3.0;
+const double GLSoccerView::DebugZ  = 4.0;
 const int GLSoccerView::PreferedWidth = 1024;
 const int GLSoccerView::PreferedHeight = 768;
 const double GLSoccerView::MinRedrawInterval = 0.016; ///Minimum time between graphics updates (limits the fps)
@@ -371,15 +372,17 @@ void GLSoccerView::paintEvent(QPaintEvent* event)
     drawFieldLines(fieldDim);
     drawRobots();
     drawBall(ball);
-    //vectorTextTest();
+    drawDebugs();
+//    vectorTextTest();
     glPopMatrix();
     swapBuffers();
     graphicsMutex.unlock();
 }
 
-void GLSoccerView::drawQuad(vector2d loc1, vector2d loc2, double z)
+void GLSoccerView::drawQuad(vector2d loc1, vector2d loc2, double z, bool fill)
 {
-    glBegin(GL_QUADS);
+    if (fill) glBegin(GL_QUADS);
+    else glBegin(GL_LINE_LOOP);
     glVertex3d(loc1.x,loc1.y,z);
     glVertex3d(loc2.x,loc1.y,z);
     glVertex3d(loc2.x,loc2.y,z);
@@ -387,12 +390,13 @@ void GLSoccerView::drawQuad(vector2d loc1, vector2d loc2, double z)
     glEnd();
 }
 
-void GLSoccerView::drawArc(vector2d loc, double r1, double r2, double theta1, double theta2, double z, double dTheta)
+void GLSoccerView::drawArc(vector2d loc, double r1, double r2, double theta1, double theta2, double z, double dTheta, bool fill)
 {
     static const double tesselation = 1.0;
     if(dTheta<0){
         dTheta = tesselation/r2;
     }
+    if (fill) r1 = 0;
     glBegin(GL_QUAD_STRIP);
     for(double theta=theta1; theta<theta2; theta+=dTheta){
         double c1 = cos(theta), s1 = sin(theta);
@@ -402,6 +406,22 @@ void GLSoccerView::drawArc(vector2d loc, double r1, double r2, double theta1, do
     double c1 = cos(theta2), s1 = sin(theta2);
     glVertex3d(r2*c1+loc.x,r2*s1+loc.y,z);
     glVertex3d(r1*c1+loc.x,r1*s1+loc.y,z);
+    glEnd();
+}
+
+void GLSoccerView::drawPoint(double x, double y, double z) {
+    drawLine(x - 1, y + 1,
+             x + 1, y - 1,
+             z);
+    drawLine(x + 1, y + 1,
+             x - 1, y - 1,
+             z);
+}
+
+void GLSoccerView::drawLine(double x1, double y1, double x2, double y2, double z) {
+    glBegin(GL_LINES);
+    glVertex3d(x1, y1, z);
+    glVertex3d(x2, y2, z);
     glEnd();
 }
 
@@ -572,7 +592,6 @@ void GLSoccerView::drawFieldLines(FieldDimensions& dimensions)
     vector2d a;
     a.x = a.y = 0;
     drawRobot(a, 10, 0.9, 3, 1, true);
-
 }
 
 void GLSoccerView::drawBall(vector2d loc)
@@ -600,5 +619,72 @@ void GLSoccerView::drawRobots() {
 }
 
 void GLSoccerView::drawDebugs() {
+    for (int i = 0; i < debugs.vectors_size(); i++) {
+        const Vec2D& v = debugs.vectors(i);
+        glColor4f(v.color().r(),
+                  v.color().g(),
+                  v.color().b(),
+                  v.color().a());
+        drawPoint(v.x(), v.y(), DebugZ);
+    }
 
+    for (int i = 0; i < debugs.circles_size(); i++) {
+        const Cir2D& c = debugs.circles(i);
+        glColor4f(c.color().r(),
+                  c.color().g(),
+                  c.color().b(),
+                  c.color().a());
+        drawArc(c.center().x(), c.center().y(),
+                (c.fill()) ? 0 : c.radius() - 0.1, c.radius(),
+                c.startangle(), c.endangle(), DebugZ, -1, c.fill());
+    }
+
+    for (int i = 0; i < debugs.rects_size(); i++) {
+        const Rec2D& r = debugs.rects(i);
+        glColor4f(r.color().r(),
+                  r.color().g(),
+                  r.color().b(),
+                  r.color().a());
+        drawQuad(r.topleft().x(), r.topleft().y(),
+                 r.botright().x(), r.botright().y(), DebugZ, r.fill());
+    }
+
+    for (int i = 0; i < debugs.segments_size(); i++) {
+        const Seg2D& s = debugs.segments(i);
+        glColor4f(s.color().r(),
+                  s.color().g(),
+                  s.color().b(),
+                  s.color().a());
+        drawLine(s.origin().x(), s.origin().y(),
+                 s.terminal().x(), s.terminal().y(), DebugZ);
+
+    }
+
+    for (int i = 0; i < debugs.texts_size(); i++) {
+        const Tex2D& t = debugs.texts(i);
+        QString q(t.data().c_str());
+        q.replace(' ', '_');
+        glColor4f(t.color().r(),
+                  t.color().g(),
+                  t.color().b(),
+                  t.color().a());
+        glText.drawString(t.pos().x(), t.pos().y(), 0, t.size(), q.toStdString().c_str(),GLText::CenterAligned,GLText::MiddleAligned);
+
+    }
+
+    for (int i = 0; i < debugs.polygons_size(); i++) {
+        const Pol2D& p = debugs.polygons(i);
+        glColor4f(p.color().r(),
+                  p.color().g(),
+                  p.color().b(),
+                  p.color().a());
+        if (p.fill()) glBegin(GL_TRIANGLE_FAN);
+        else glBegin(GL_LINE_LOOP);
+        for (int j = 0; j < p.vectors_size(); j++) {
+            const Vec2& v = p.vectors(j);
+            glVertex3d(v.x(), v.y(), DebugZ);
+        }
+        glEnd();
+
+    }
 }
