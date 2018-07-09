@@ -18,7 +18,6 @@ class MyThread : public QThread
 protected:
     void run()
     {
-        static const double minDuration = 0.1; //100FPS
         QUdpSocket* socket = new QUdpSocket();
         socket->bind(QHostAddress("192.168.43.105"), 10020, QUdpSocket::ShareAddress);
 //        socket->joinMulticastGroup(QHostAddress("224.5.23.2"));
@@ -30,30 +29,16 @@ protected:
                 QHostAddress sender;
                 quint16 senderPort;
                 socket->readDatagram(Buffer.data(),Buffer.size(),&sender,&senderPort);
-//                qDebug() << Buffer.data() << senderPort << sender.toString();
                 Frame head;
-                if (head.ParseFromArray(Buffer.data(), Buffer.size())) {
+                if (head.ParsePartialFromArray(Buffer.data(), Buffer.size())) {
+                    qDebug() << Buffer.size();
                     if(head.has_ball() && head.robots_blue_size() == 5 && head.robots_yellow_size() == 5) {
                         view->updateFrame(head);
                     }
-//                       qDebug() << head.x() << head.y();
-//                       view->ball.x = head.x() - 110;
-//                       view->ball.y = head.y() - 90;
-//                    if (packet.has_header()) {
-//                        qDebug() << "Seq: " << packet.header().seq() << "Sec: " << packet.header().stamp_second();
-//                    }
-//                    if (packet.has_detection()) {
-//                        if (packet.detection().has_ball()) {
-//                            qDebug() << packet.detection().ball().x() << packet.detection().ball().y();
-//                            view->updatePacket(packet);
-
-//                        }
-//                    }
                 } else {
-                    qDebug() << "FAILED TO PARSE";
+                    qDebug() << Buffer.data() << "FAILED TO PARSE";
                 }
             }
-            msleep(10);
         }
     }
 

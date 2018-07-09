@@ -90,6 +90,10 @@ private:
     static const int unknownRobotID;
 
     QVector <Robot> robots;
+
+    QList   <Vec2D> robotsHistory;
+    QList   <Vec2D> ballHistory;
+
     QMutex graphicsMutex;
     GLText glText;
 
@@ -117,6 +121,7 @@ private:
 private:
     void drawFieldLines(FieldDimensions &dimensions);
     void drawRobots();
+    void drawHistory();
     void drawDebugs();
     void drawTriangle(vector2d loc1, vector2d loc2, vector2d loc3, double z);
     void drawQuad(vector2d loc1, vector2d loc2, double z=0.0, bool fill = true);
