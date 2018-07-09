@@ -49,6 +49,8 @@ class GLSoccerView : public QGLWidget {
     Q_OBJECT
 
 public:
+    vector2d ball;
+
     struct FieldDimensions {
         vector<FieldLine*> lines;
         vector<FieldCircularArc*> arcs;
@@ -83,11 +85,11 @@ private:
     static const double DebugZ;
     static const int PreferedWidth;
     static const int PreferedHeight;
+    static const double RobotSide;
     static const double MinRedrawInterval; ///Minimum time between graphics updates (limits the fps)
     static const int unknownRobotID;
 
     QVector <Robot> robots;
-    vector2d ball;
     QMutex graphicsMutex;
     GLText glText;
 
@@ -144,6 +146,7 @@ protected:
 public:
     GLSoccerView(QWidget *parent = 0);
     void updatePacket(const DataWrapper& _packet);
+    void updateFrame(const Frame &_frame);
     void updateDetection(const Frame& _frame);
     void updateWorldModel(const WorldModel& _wm);
 public slots:

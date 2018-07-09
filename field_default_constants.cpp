@@ -25,35 +25,36 @@
 
 namespace FieldConstants {
 
+
 const std::size_t kNumFieldLines = 24 + 16 - 1;
 const FieldLine kFieldLines[kNumFieldLines] = {
-    FieldLine("TopTouchLine", -110, 90, 110, 90, 1),
-    FieldLine("BottomTouchLine", -110, -90, 110, -90, 1),
-    FieldLine("LeftGoalLine", -110, -90, -110, 90, 1),
-    FieldLine("RightGoalLine", 110, -90, 110, 90, 1),
-    FieldLine("HalfwayLine", 0, -90, 0, 90, 1),
+    FieldLine("TopTouchLine", -110, 90, 110, 90, thinkness),
+    FieldLine("BottomTouchLine", -110, -90, 110, -90, thinkness),
+    FieldLine("LeftGoalLine", -110, -90, -110, 90, thinkness),
+    FieldLine("RightGoalLine", 110, -90, 110, 90, thinkness),
+    FieldLine("HalfwayLine", 0, -90, 0, 90, thinkness),
 //    FieldLine("CenterLine", -110, 0, 110, 0, 1),
 
-    FieldLine("LeftPenaltyStretchU", -110, 25, -95, 25, 1),
-    FieldLine("LeftPenaltyStretchM", -95, -25, -95, 25, 1),
-    FieldLine("LeftPenaltyStretchB", -110, -25, -95, -25, 1),
-    FieldLine("LeftOPenaltyStretchU", -110, 40, -75, 40, 1),
-    FieldLine("LeftOPenaltyStretchM", -75, -40, -75, 40, 1),
-    FieldLine("LeftOPenaltyStretchB", -110, -40, -75, -40, 1),
+    FieldLine("LeftPenaltyStretchU", -110, 25, -95, 25, thinkness),
+    FieldLine("LeftPenaltyStretchM", -95, -25, -95, 25, thinkness),
+    FieldLine("LeftPenaltyStretchB", -110, -25, -95, -25, thinkness),
+    FieldLine("LeftOPenaltyStretchU", -110, 40, -75, 40, thinkness),
+    FieldLine("LeftOPenaltyStretchM", -75, -40, -75, 40, thinkness),
+    FieldLine("LeftOPenaltyStretchB", -110, -40, -75, -40, thinkness),
 
-    FieldLine("RightPenaltyStretchU", 95, 25, 110, 25, 1),
-    FieldLine("RightPenaltyStretchM", 95, -25, 95, 25, 1),
-    FieldLine("RightPenaltyStretchB", 95, -25, 110, -25, 1),
-    FieldLine("RightOPenaltyStretchU", 75, 40, 110, 40, 1),
-    FieldLine("RightOPenaltyStretchM", 75, -40, 75, 40, 1),
-    FieldLine("RightOPenaltyStretchB", 75, -40, 110, -40, 1),
+    FieldLine("RightPenaltyStretchU", 95, 25, 110, 25, thinkness),
+    FieldLine("RightPenaltyStretchM", 95, -25, 95, 25, thinkness),
+    FieldLine("RightPenaltyStretchB", 95, -25, 110, -25, thinkness),
+    FieldLine("RightOPenaltyStretchU", 75, 40, 110, 40, thinkness),
+    FieldLine("RightOPenaltyStretchM", 75, -40, 75, 40, thinkness),
+    FieldLine("RightOPenaltyStretchB", 75, -40, 110, -40, thinkness),
 
-    FieldLine("LeftGoalU", -125, 20, -110, 20, 1),
-    FieldLine("LeftGoalM", -125, -20, -125, 20, 1),
-    FieldLine("LeftGoalB", -125, -20, -110, -20, 1),
-    FieldLine("RightGoalU", 110, 20, 125, 20, 1),
-    FieldLine("RightGoalM", 125, -20, 125, 20, 1),
-    FieldLine("RightGoalB", 110, -20, 125, -20, 1),
+    FieldLine("LeftGoalU", -125, 20, -110, 20, thinkness),
+    FieldLine("LeftGoalM", -125, -20, -125, 20, thinkness),
+    FieldLine("LeftGoalB", -125, -20, -110, -20, thinkness),
+    FieldLine("RightGoalU", 110, 20, 125, 20, thinkness),
+    FieldLine("RightGoalM", 125, -20, 125, 20, thinkness),
+    FieldLine("RightGoalB", 110, -20, 125, -20, thinkness),
 
     FieldLine("TopLeftLeftH", -82, 60, -80, 60, 0.5),
     FieldLine("TopLeftLeftV", -80, 61, -80, 59, 0.5),
@@ -75,23 +76,23 @@ const FieldLine kFieldLines[kNumFieldLines] = {
 
 const std::size_t kNumFieldArcs = 3 + 6;
 const FieldCircularArc kFieldArcs[kNumFieldArcs] = {
-    FieldCircularArc("Left2FieldPenaltyArc", -87, 0, 17, -0.8, 0.8, 1),
-    FieldCircularArc("RightFieldPenaltyArc", 87, 0, 17, 2.35, 3.95, 1),
-    FieldCircularArc("CenterCircle", 0, 0, 25, 0, 2.0 * M_PI, 1),
-    FieldCircularArc("LeftPenaltyPoint", -72.5, 0, 0.5, 0, 2.0 * M_PI, 1),
-    FieldCircularArc("RightPenaltyPoint", 72.5, 0, 0.5, 0, 2.0 * M_PI, 1),
-    FieldCircularArc("LeftTopFB", -55, 60, 0.5, 0, 2.0 * M_PI, 1),
-    FieldCircularArc("LeftBotFB", -55, -60, 0.5, 0, 2.0 * M_PI, 1),
-    FieldCircularArc("RightTopFB", 55, 60, 0.5, 0, 2.0 * M_PI, 1),
-    FieldCircularArc("RightBotFB", 55, -60, 0.5, 0, 2.0 * M_PI, 1)
+    FieldCircularArc("Left2FieldPenaltyArc", -87, 0, 17, -0.8, 0.8, thinkness),
+    FieldCircularArc("RightFieldPenaltyArc", 87, 0, 17, 2.35, 3.95, thinkness),
+    FieldCircularArc("CenterCircle", 0, 0, 25, 0, 2.0 * M_PI, thinkness),
+    FieldCircularArc("LeftPenaltyPoint", -72.5, 0, 0.5, 0, 2.0 * M_PI, thinkness),
+    FieldCircularArc("RightPenaltyPoint", 72.5, 0, 0.5, 0, 2.0 * M_PI, thinkness),
+    FieldCircularArc("LeftTopFB", -55, 60, 0.5, 0, 2.0 * M_PI, thinkness),
+    FieldCircularArc("LeftBotFB", -55, -60, 0.5, 0, 2.0 * M_PI, thinkness),
+    FieldCircularArc("RightTopFB", 55, 60, 0.5, 0, 2.0 * M_PI, thinkness),
+    FieldCircularArc("RightBotFB", 55, -60, 0.5, 0, 2.0 * M_PI, thinkness)
 };
 
 const std::size_t kNumFieldTriangles = 4;
 const FieldTriangle kFieldTris[kNumFieldTriangles] = {
-    FieldTriangle("LeftTopTri", -110, 83, -110, 90, -103, 90),
-    FieldTriangle("RightTopTri", 103, 90, 110, 90, 110, 83),
-    FieldTriangle("LeftBotTri", -110, -83, -110, -90, -103, -90),
-    FieldTriangle("RightBotTri", 103, -90, 110, -90, 110, -83)
+    FieldTriangle("LeftTopTri", -110, 80, -110, 90, -100, 90),
+    FieldTriangle("RightTopTri", 100, 90, 110, 90, 110, 80),
+    FieldTriangle("LeftBotTri", -110, -80, -110, -90, -100, -90),
+    FieldTriangle("RightBotTri", 100, -90, 110, -90, 110, -80)
 
 };
 

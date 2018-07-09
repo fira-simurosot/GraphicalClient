@@ -33,7 +33,7 @@ const double kFieldWidth = 200.0;
 const double kGoalWidth = 40.0;
 const double kGoalDepth = 15.0;
 const double kBoundaryWidth = 50.0;
-
+const double thinkness = 0.3;
 extern const std::size_t kNumFieldLines;
 extern const FieldLine kFieldLines[];
 
