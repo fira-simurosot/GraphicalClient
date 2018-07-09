@@ -88,6 +88,7 @@ void GLSoccerView::updatePacket(const DataWrapper &_packet) {
     ball.x = ball.y = 5000;
     robots.clear();
     bool showRaw = true;
+
     if (showRaw) {
         if (_packet.has_detection()) {
             updateDetection(_packet.detection());
