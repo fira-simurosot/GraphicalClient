@@ -19,7 +19,7 @@ protected:
     void run()
     {
         QUdpSocket* socket = new QUdpSocket();
-        socket->bind(QHostAddress("192.168.43.105"), 10020, QUdpSocket::ShareAddress);
+        socket->bind(QHostAddress("127.0.0.1"), 10040, QUdpSocket::ShareAddress);
 //        socket->joinMulticastGroup(QHostAddress("224.5.23.2"));
         DataWrapper packet;
         while(runApp) {
@@ -29,12 +29,12 @@ protected:
                 QHostAddress sender;
                 quint16 senderPort;
                 socket->readDatagram(Buffer.data(),Buffer.size(),&sender,&senderPort);
-                Frame head;
+                WorldModel head;
                 if (head.ParsePartialFromArray(Buffer.data(), Buffer.size())) {
                     qDebug() << Buffer.size();
-                    if(head.has_ball() && head.robots_blue_size() == 5 && head.robots_yellow_size() == 5) {
-                        view->updateFrame(head);
-                    }
+                    //if(head.has_ball() && head.robots_blue_size() == 5 && head.robots_yellow_size() == 5) {
+                        view->updateWorldModel(head);
+                    //}
                 } else {
                     qDebug() << Buffer.data() << "FAILED TO PARSE";
                 }
@@ -50,8 +50,6 @@ public:
 int main(int argc, char **argv)
 {
     QApplication app(argc, argv);
-    MainWindow w;
-    w.show();
     view = new GLSoccerView();
     view->show();
     MyThread thread;

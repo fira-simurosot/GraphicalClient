@@ -186,6 +186,8 @@ void GLSoccerView::updateDetection(const Frame &_frame) {
 
 void GLSoccerView::updateWorldModel(const WorldModel &_wm) {
 
+    robots.clear();
+
     for(int i=0; i < _wm.opp_robots_size(); i++){
         Robot robot;
         robot.loc.set(_wm.opp_robots(i).pos().x(), _wm.opp_robots(i).pos().y());
@@ -210,6 +212,7 @@ void GLSoccerView::updateWorldModel(const WorldModel &_wm) {
 
     ball.x = _wm.ball().pos().x();
     ball.y = _wm.ball().pos().y();
+    postRedraw();
 }
 
 void GLSoccerView::redraw()
