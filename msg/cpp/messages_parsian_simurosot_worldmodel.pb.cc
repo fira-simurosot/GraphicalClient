@@ -117,10 +117,9 @@ const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUT
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::WorldModel, ball_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::WorldModel, our_robots_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::WorldModel, opp_robots_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::WorldModel, our_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::WorldModel, opp_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::WorldModel, blue_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::WorldModel, mode_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::WorldModel, gamestate_),
 };
 static const ::google::protobuf::internal::MigrationSchema schemas[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
@@ -161,22 +160,21 @@ void AddDescriptorsImpl() {
       "\215\001\n\014MovingObject\022\n\n\002id\030\001 \001(\r\022\026\n\003pos\030\002 \001("
       "\0132\t.Vector2D\022\026\n\003vel\030\003 \001(\0132\t.Vector2D\022\026\n\003"
       "acc\030\004 \001(\0132\t.Vector2D\022\026\n\016anguleVelocity\030\005"
-      " \001(\002\022\021\n\tdirection\030\006 \001(\002\"\252\001\n\nWorldModel\022\033"
-      "\n\004ball\030\001 \001(\0132\r.MovingObject\022!\n\nour_robot"
-      "s\030\002 \003(\0132\r.MovingObject\022!\n\nopp_robots\030\003 \003"
-      "(\0132\r.MovingObject\022\014\n\004blue\030\004 \001(\010\022\014\n\004mode\030"
-      "\005 \001(\t\022\035\n\tgameState\030\006 \001(\0162\n.GameState*\231\002\n"
-      "\tGameState\022\n\n\006PlayOn\020\000\022\024\n\020FreeBall_LeftT"
-      "op\020\001\022\024\n\020FreeBall_LeftBot\020\002\022\025\n\021FreeBall_R"
-      "ightTop\020\003\022\025\n\021FreeBall_RightBot\020\004\022\024\n\020Plac"
-      "eKick_Yellow\020\005\022\022\n\016PlaceKick_Blue\020\006\022\026\n\022Pe"
-      "naltyKick_Yellow\020\007\022\024\n\020PenaltyKick_Blue\020\010"
-      "\022\023\n\017FreeKick_Yellow\020\t\022\021\n\rFreeKick_Blue\020\n"
-      "\022\023\n\017GoalKick_Yellow\020\013\022\021\n\rGoalKick_Blue\020\014"
-      "b\006proto3"
+      " \001(\002\022\021\n\tdirection\030\006 \001(\002\"\216\001\n\nWorldModel\022\033"
+      "\n\004ball\030\001 \001(\0132\r.MovingObject\022\032\n\003our\030\002 \003(\013"
+      "2\r.MovingObject\022\032\n\003opp\030\003 \003(\0132\r.MovingObj"
+      "ect\022\014\n\004blue\030\004 \001(\010\022\035\n\tgameState\030\005 \001(\0162\n.G"
+      "ameState*\231\002\n\tGameState\022\n\n\006PlayOn\020\000\022\024\n\020Fr"
+      "eeBall_LeftTop\020\001\022\024\n\020FreeBall_LeftBot\020\002\022\025"
+      "\n\021FreeBall_RightTop\020\003\022\025\n\021FreeBall_RightB"
+      "ot\020\004\022\024\n\020PlaceKick_Yellow\020\005\022\022\n\016PlaceKick_"
+      "Blue\020\006\022\026\n\022PenaltyKick_Yellow\020\007\022\024\n\020Penalt"
+      "yKick_Blue\020\010\022\023\n\017FreeKick_Yellow\020\t\022\021\n\rFre"
+      "eKick_Blue\020\n\022\023\n\017GoalKick_Yellow\020\013\022\021\n\rGoa"
+      "lKick_Blue\020\014b\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 688);
+      descriptor, 660);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "messages_parsian_simurosot_worldmodel.proto", &protobuf_RegisterTypes);
 }
@@ -931,10 +929,9 @@ void WorldModel::InitAsDefaultInstance() {
 }
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int WorldModel::kBallFieldNumber;
-const int WorldModel::kOurRobotsFieldNumber;
-const int WorldModel::kOppRobotsFieldNumber;
+const int WorldModel::kOurFieldNumber;
+const int WorldModel::kOppFieldNumber;
 const int WorldModel::kBlueFieldNumber;
-const int WorldModel::kModeFieldNumber;
 const int WorldModel::kGameStateFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
@@ -948,13 +945,9 @@ WorldModel::WorldModel()
 WorldModel::WorldModel(const WorldModel& from)
   : ::google::protobuf::Message(),
       _internal_metadata_(NULL),
-      our_robots_(from.our_robots_),
-      opp_robots_(from.opp_robots_) {
+      our_(from.our_),
+      opp_(from.opp_) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
-  mode_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.mode().size() > 0) {
-    mode_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.mode_);
-  }
   if (from.has_ball()) {
     ball_ = new ::MovingObject(*from.ball_);
   } else {
@@ -967,7 +960,6 @@ WorldModel::WorldModel(const WorldModel& from)
 }
 
 void WorldModel::SharedCtor() {
-  mode_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ::memset(&ball_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&gamestate_) -
       reinterpret_cast<char*>(&ball_)) + sizeof(gamestate_));
@@ -979,7 +971,6 @@ WorldModel::~WorldModel() {
 }
 
 void WorldModel::SharedDtor() {
-  mode_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   if (this != internal_default_instance()) delete ball_;
 }
 
@@ -1003,9 +994,8 @@ void WorldModel::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  our_robots_.Clear();
-  opp_robots_.Clear();
-  mode_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  our_.Clear();
+  opp_.Clear();
   if (GetArenaNoVirtual() == NULL && ball_ != NULL) {
     delete ball_;
   }
@@ -1038,24 +1028,24 @@ bool WorldModel::MergePartialFromCodedStream(
         break;
       }
 
-      // repeated .MovingObject our_robots = 2;
+      // repeated .MovingObject our = 2;
       case 2: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(18u /* 18 & 0xFF */)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
-                input, add_our_robots()));
+                input, add_our()));
         } else {
           goto handle_unusual;
         }
         break;
       }
 
-      // repeated .MovingObject opp_robots = 3;
+      // repeated .MovingObject opp = 3;
       case 3: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(26u /* 26 & 0xFF */)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
-                input, add_opp_robots()));
+                input, add_opp()));
         } else {
           goto handle_unusual;
         }
@@ -1076,26 +1066,10 @@ bool WorldModel::MergePartialFromCodedStream(
         break;
       }
 
-      // string mode = 5;
+      // .GameState gameState = 5;
       case 5: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(42u /* 42 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_mode()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->mode().data(), static_cast<int>(this->mode().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "WorldModel.mode"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
-      // .GameState gameState = 6;
-      case 6: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(48u /* 48 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(40u /* 40 & 0xFF */)) {
           int value;
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
@@ -1139,21 +1113,21 @@ void WorldModel::SerializeWithCachedSizes(
       1, this->_internal_ball(), output);
   }
 
-  // repeated .MovingObject our_robots = 2;
+  // repeated .MovingObject our = 2;
   for (unsigned int i = 0,
-      n = static_cast<unsigned int>(this->our_robots_size()); i < n; i++) {
+      n = static_cast<unsigned int>(this->our_size()); i < n; i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       2,
-      this->our_robots(static_cast<int>(i)),
+      this->our(static_cast<int>(i)),
       output);
   }
 
-  // repeated .MovingObject opp_robots = 3;
+  // repeated .MovingObject opp = 3;
   for (unsigned int i = 0,
-      n = static_cast<unsigned int>(this->opp_robots_size()); i < n; i++) {
+      n = static_cast<unsigned int>(this->opp_size()); i < n; i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       3,
-      this->opp_robots(static_cast<int>(i)),
+      this->opp(static_cast<int>(i)),
       output);
   }
 
@@ -1162,20 +1136,10 @@ void WorldModel::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteBool(4, this->blue(), output);
   }
 
-  // string mode = 5;
-  if (this->mode().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->mode().data(), static_cast<int>(this->mode().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "WorldModel.mode");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      5, this->mode(), output);
-  }
-
-  // .GameState gameState = 6;
+  // .GameState gameState = 5;
   if (this->gamestate() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteEnum(
-      6, this->gamestate(), output);
+      5, this->gamestate(), output);
   }
 
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
@@ -1199,20 +1163,20 @@ void WorldModel::SerializeWithCachedSizes(
         1, this->_internal_ball(), deterministic, target);
   }
 
-  // repeated .MovingObject our_robots = 2;
+  // repeated .MovingObject our = 2;
   for (unsigned int i = 0,
-      n = static_cast<unsigned int>(this->our_robots_size()); i < n; i++) {
+      n = static_cast<unsigned int>(this->our_size()); i < n; i++) {
     target = ::google::protobuf::internal::WireFormatLite::
       InternalWriteMessageToArray(
-        2, this->our_robots(static_cast<int>(i)), deterministic, target);
+        2, this->our(static_cast<int>(i)), deterministic, target);
   }
 
-  // repeated .MovingObject opp_robots = 3;
+  // repeated .MovingObject opp = 3;
   for (unsigned int i = 0,
-      n = static_cast<unsigned int>(this->opp_robots_size()); i < n; i++) {
+      n = static_cast<unsigned int>(this->opp_size()); i < n; i++) {
     target = ::google::protobuf::internal::WireFormatLite::
       InternalWriteMessageToArray(
-        3, this->opp_robots(static_cast<int>(i)), deterministic, target);
+        3, this->opp(static_cast<int>(i)), deterministic, target);
   }
 
   // bool blue = 4;
@@ -1220,21 +1184,10 @@ void WorldModel::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(4, this->blue(), target);
   }
 
-  // string mode = 5;
-  if (this->mode().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->mode().data(), static_cast<int>(this->mode().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "WorldModel.mode");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        5, this->mode(), target);
-  }
-
-  // .GameState gameState = 6;
+  // .GameState gameState = 5;
   if (this->gamestate() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
-      6, this->gamestate(), target);
+      5, this->gamestate(), target);
   }
 
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
@@ -1254,33 +1207,26 @@ size_t WorldModel::ByteSizeLong() const {
       ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
         (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
   }
-  // repeated .MovingObject our_robots = 2;
+  // repeated .MovingObject our = 2;
   {
-    unsigned int count = static_cast<unsigned int>(this->our_robots_size());
+    unsigned int count = static_cast<unsigned int>(this->our_size());
     total_size += 1UL * count;
     for (unsigned int i = 0; i < count; i++) {
       total_size +=
         ::google::protobuf::internal::WireFormatLite::MessageSize(
-          this->our_robots(static_cast<int>(i)));
+          this->our(static_cast<int>(i)));
     }
   }
 
-  // repeated .MovingObject opp_robots = 3;
+  // repeated .MovingObject opp = 3;
   {
-    unsigned int count = static_cast<unsigned int>(this->opp_robots_size());
+    unsigned int count = static_cast<unsigned int>(this->opp_size());
     total_size += 1UL * count;
     for (unsigned int i = 0; i < count; i++) {
       total_size +=
         ::google::protobuf::internal::WireFormatLite::MessageSize(
-          this->opp_robots(static_cast<int>(i)));
+          this->opp(static_cast<int>(i)));
     }
-  }
-
-  // string mode = 5;
-  if (this->mode().size() > 0) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->mode());
   }
 
   // .MovingObject ball = 1;
@@ -1295,7 +1241,7 @@ size_t WorldModel::ByteSizeLong() const {
     total_size += 1 + 1;
   }
 
-  // .GameState gameState = 6;
+  // .GameState gameState = 5;
   if (this->gamestate() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::EnumSize(this->gamestate());
@@ -1328,12 +1274,8 @@ void WorldModel::MergeFrom(const WorldModel& from) {
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  our_robots_.MergeFrom(from.our_robots_);
-  opp_robots_.MergeFrom(from.opp_robots_);
-  if (from.mode().size() > 0) {
-
-    mode_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.mode_);
-  }
+  our_.MergeFrom(from.our_);
+  opp_.MergeFrom(from.opp_);
   if (from.has_ball()) {
     mutable_ball()->::MovingObject::MergeFrom(from.ball());
   }
@@ -1369,10 +1311,8 @@ void WorldModel::Swap(WorldModel* other) {
 }
 void WorldModel::InternalSwap(WorldModel* other) {
   using std::swap;
-  CastToBase(&our_robots_)->InternalSwap(CastToBase(&other->our_robots_));
-  CastToBase(&opp_robots_)->InternalSwap(CastToBase(&other->opp_robots_));
-  mode_.Swap(&other->mode_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
+  CastToBase(&our_)->InternalSwap(CastToBase(&other->our_));
+  CastToBase(&opp_)->InternalSwap(CastToBase(&other->opp_));
   swap(ball_, other->ball_);
   swap(blue_, other->blue_);
   swap(gamestate_, other->gamestate_);

@@ -450,43 +450,29 @@ class WorldModel : public ::google::protobuf::Message /* @@protoc_insertion_poin
 
   // accessors -------------------------------------------------------
 
-  // repeated .MovingObject our_robots = 2;
-  int our_robots_size() const;
-  void clear_our_robots();
-  static const int kOurRobotsFieldNumber = 2;
-  ::MovingObject* mutable_our_robots(int index);
+  // repeated .MovingObject our = 2;
+  int our_size() const;
+  void clear_our();
+  static const int kOurFieldNumber = 2;
+  ::MovingObject* mutable_our(int index);
   ::google::protobuf::RepeatedPtrField< ::MovingObject >*
-      mutable_our_robots();
-  const ::MovingObject& our_robots(int index) const;
-  ::MovingObject* add_our_robots();
+      mutable_our();
+  const ::MovingObject& our(int index) const;
+  ::MovingObject* add_our();
   const ::google::protobuf::RepeatedPtrField< ::MovingObject >&
-      our_robots() const;
+      our() const;
 
-  // repeated .MovingObject opp_robots = 3;
-  int opp_robots_size() const;
-  void clear_opp_robots();
-  static const int kOppRobotsFieldNumber = 3;
-  ::MovingObject* mutable_opp_robots(int index);
+  // repeated .MovingObject opp = 3;
+  int opp_size() const;
+  void clear_opp();
+  static const int kOppFieldNumber = 3;
+  ::MovingObject* mutable_opp(int index);
   ::google::protobuf::RepeatedPtrField< ::MovingObject >*
-      mutable_opp_robots();
-  const ::MovingObject& opp_robots(int index) const;
-  ::MovingObject* add_opp_robots();
+      mutable_opp();
+  const ::MovingObject& opp(int index) const;
+  ::MovingObject* add_opp();
   const ::google::protobuf::RepeatedPtrField< ::MovingObject >&
-      opp_robots() const;
-
-  // string mode = 5;
-  void clear_mode();
-  static const int kModeFieldNumber = 5;
-  const ::std::string& mode() const;
-  void set_mode(const ::std::string& value);
-  #if LANG_CXX11
-  void set_mode(::std::string&& value);
-  #endif
-  void set_mode(const char* value);
-  void set_mode(const char* value, size_t size);
-  ::std::string* mutable_mode();
-  ::std::string* release_mode();
-  void set_allocated_mode(::std::string* mode);
+      opp() const;
 
   // .MovingObject ball = 1;
   bool has_ball() const;
@@ -506,9 +492,9 @@ class WorldModel : public ::google::protobuf::Message /* @@protoc_insertion_poin
   bool blue() const;
   void set_blue(bool value);
 
-  // .GameState gameState = 6;
+  // .GameState gameState = 5;
   void clear_gamestate();
-  static const int kGameStateFieldNumber = 6;
+  static const int kGameStateFieldNumber = 5;
   ::GameState gamestate() const;
   void set_gamestate(::GameState value);
 
@@ -516,9 +502,8 @@ class WorldModel : public ::google::protobuf::Message /* @@protoc_insertion_poin
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  ::google::protobuf::RepeatedPtrField< ::MovingObject > our_robots_;
-  ::google::protobuf::RepeatedPtrField< ::MovingObject > opp_robots_;
-  ::google::protobuf::internal::ArenaStringPtr mode_;
+  ::google::protobuf::RepeatedPtrField< ::MovingObject > our_;
+  ::google::protobuf::RepeatedPtrField< ::MovingObject > opp_;
   ::MovingObject* ball_;
   bool blue_;
   int gamestate_;
@@ -830,64 +815,64 @@ inline void WorldModel::set_allocated_ball(::MovingObject* ball) {
   // @@protoc_insertion_point(field_set_allocated:WorldModel.ball)
 }
 
-// repeated .MovingObject our_robots = 2;
-inline int WorldModel::our_robots_size() const {
-  return our_robots_.size();
+// repeated .MovingObject our = 2;
+inline int WorldModel::our_size() const {
+  return our_.size();
 }
-inline void WorldModel::clear_our_robots() {
-  our_robots_.Clear();
+inline void WorldModel::clear_our() {
+  our_.Clear();
 }
-inline ::MovingObject* WorldModel::mutable_our_robots(int index) {
-  // @@protoc_insertion_point(field_mutable:WorldModel.our_robots)
-  return our_robots_.Mutable(index);
+inline ::MovingObject* WorldModel::mutable_our(int index) {
+  // @@protoc_insertion_point(field_mutable:WorldModel.our)
+  return our_.Mutable(index);
 }
 inline ::google::protobuf::RepeatedPtrField< ::MovingObject >*
-WorldModel::mutable_our_robots() {
-  // @@protoc_insertion_point(field_mutable_list:WorldModel.our_robots)
-  return &our_robots_;
+WorldModel::mutable_our() {
+  // @@protoc_insertion_point(field_mutable_list:WorldModel.our)
+  return &our_;
 }
-inline const ::MovingObject& WorldModel::our_robots(int index) const {
-  // @@protoc_insertion_point(field_get:WorldModel.our_robots)
-  return our_robots_.Get(index);
+inline const ::MovingObject& WorldModel::our(int index) const {
+  // @@protoc_insertion_point(field_get:WorldModel.our)
+  return our_.Get(index);
 }
-inline ::MovingObject* WorldModel::add_our_robots() {
-  // @@protoc_insertion_point(field_add:WorldModel.our_robots)
-  return our_robots_.Add();
+inline ::MovingObject* WorldModel::add_our() {
+  // @@protoc_insertion_point(field_add:WorldModel.our)
+  return our_.Add();
 }
 inline const ::google::protobuf::RepeatedPtrField< ::MovingObject >&
-WorldModel::our_robots() const {
-  // @@protoc_insertion_point(field_list:WorldModel.our_robots)
-  return our_robots_;
+WorldModel::our() const {
+  // @@protoc_insertion_point(field_list:WorldModel.our)
+  return our_;
 }
 
-// repeated .MovingObject opp_robots = 3;
-inline int WorldModel::opp_robots_size() const {
-  return opp_robots_.size();
+// repeated .MovingObject opp = 3;
+inline int WorldModel::opp_size() const {
+  return opp_.size();
 }
-inline void WorldModel::clear_opp_robots() {
-  opp_robots_.Clear();
+inline void WorldModel::clear_opp() {
+  opp_.Clear();
 }
-inline ::MovingObject* WorldModel::mutable_opp_robots(int index) {
-  // @@protoc_insertion_point(field_mutable:WorldModel.opp_robots)
-  return opp_robots_.Mutable(index);
+inline ::MovingObject* WorldModel::mutable_opp(int index) {
+  // @@protoc_insertion_point(field_mutable:WorldModel.opp)
+  return opp_.Mutable(index);
 }
 inline ::google::protobuf::RepeatedPtrField< ::MovingObject >*
-WorldModel::mutable_opp_robots() {
-  // @@protoc_insertion_point(field_mutable_list:WorldModel.opp_robots)
-  return &opp_robots_;
+WorldModel::mutable_opp() {
+  // @@protoc_insertion_point(field_mutable_list:WorldModel.opp)
+  return &opp_;
 }
-inline const ::MovingObject& WorldModel::opp_robots(int index) const {
-  // @@protoc_insertion_point(field_get:WorldModel.opp_robots)
-  return opp_robots_.Get(index);
+inline const ::MovingObject& WorldModel::opp(int index) const {
+  // @@protoc_insertion_point(field_get:WorldModel.opp)
+  return opp_.Get(index);
 }
-inline ::MovingObject* WorldModel::add_opp_robots() {
-  // @@protoc_insertion_point(field_add:WorldModel.opp_robots)
-  return opp_robots_.Add();
+inline ::MovingObject* WorldModel::add_opp() {
+  // @@protoc_insertion_point(field_add:WorldModel.opp)
+  return opp_.Add();
 }
 inline const ::google::protobuf::RepeatedPtrField< ::MovingObject >&
-WorldModel::opp_robots() const {
-  // @@protoc_insertion_point(field_list:WorldModel.opp_robots)
-  return opp_robots_;
+WorldModel::opp() const {
+  // @@protoc_insertion_point(field_list:WorldModel.opp)
+  return opp_;
 }
 
 // bool blue = 4;
@@ -904,60 +889,7 @@ inline void WorldModel::set_blue(bool value) {
   // @@protoc_insertion_point(field_set:WorldModel.blue)
 }
 
-// string mode = 5;
-inline void WorldModel::clear_mode() {
-  mode_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-inline const ::std::string& WorldModel::mode() const {
-  // @@protoc_insertion_point(field_get:WorldModel.mode)
-  return mode_.GetNoArena();
-}
-inline void WorldModel::set_mode(const ::std::string& value) {
-  
-  mode_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:WorldModel.mode)
-}
-#if LANG_CXX11
-inline void WorldModel::set_mode(::std::string&& value) {
-  
-  mode_.SetNoArena(
-    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:WorldModel.mode)
-}
-#endif
-inline void WorldModel::set_mode(const char* value) {
-  GOOGLE_DCHECK(value != NULL);
-  
-  mode_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:WorldModel.mode)
-}
-inline void WorldModel::set_mode(const char* value, size_t size) {
-  
-  mode_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:WorldModel.mode)
-}
-inline ::std::string* WorldModel::mutable_mode() {
-  
-  // @@protoc_insertion_point(field_mutable:WorldModel.mode)
-  return mode_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-inline ::std::string* WorldModel::release_mode() {
-  // @@protoc_insertion_point(field_release:WorldModel.mode)
-  
-  return mode_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-inline void WorldModel::set_allocated_mode(::std::string* mode) {
-  if (mode != NULL) {
-    
-  } else {
-    
-  }
-  mode_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), mode);
-  // @@protoc_insertion_point(field_set_allocated:WorldModel.mode)
-}
-
-// .GameState gameState = 6;
+// .GameState gameState = 5;
 inline void WorldModel::clear_gamestate() {
   gamestate_ = 0;
 }

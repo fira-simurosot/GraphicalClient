@@ -30,7 +30,6 @@
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
 #include <google/protobuf/unknown_field_set.h>
-#include "messages_parsian_simurosot_detection.pb.h"
 #include "messages_parsian_simurosot_worldmodel.pb.h"
 #include "messages_parsian_simurosot_debugs.pb.h"
 // @@protoc_insertion_point(includes)
@@ -41,7 +40,7 @@ namespace protobuf_messages_5fparsian_5fsimurosot_5fdata_5fwrapper_2eproto {
 struct TableStruct {
   static const ::google::protobuf::internal::ParseTableField entries[];
   static const ::google::protobuf::internal::AuxillaryParseTableField aux[];
-  static const ::google::protobuf::internal::ParseTable schema[2];
+  static const ::google::protobuf::internal::ParseTable schema[1];
   static const ::google::protobuf::internal::FieldMetadata field_metadata[];
   static const ::google::protobuf::internal::SerializationTable serialization_table[];
   static const ::google::protobuf::uint32 offsets[];
@@ -51,134 +50,13 @@ void AddDescriptors();
 class DataWrapper;
 class DataWrapperDefaultTypeInternal;
 extern DataWrapperDefaultTypeInternal _DataWrapper_default_instance_;
-class Header;
-class HeaderDefaultTypeInternal;
-extern HeaderDefaultTypeInternal _Header_default_instance_;
 namespace google {
 namespace protobuf {
 template<> ::DataWrapper* Arena::CreateMaybeMessage<::DataWrapper>(Arena*);
-template<> ::Header* Arena::CreateMaybeMessage<::Header>(Arena*);
 }  // namespace protobuf
 }  // namespace google
 
 // ===================================================================
-
-class Header : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Header) */ {
- public:
-  Header();
-  virtual ~Header();
-
-  Header(const Header& from);
-
-  inline Header& operator=(const Header& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  #if LANG_CXX11
-  Header(Header&& from) noexcept
-    : Header() {
-    *this = ::std::move(from);
-  }
-
-  inline Header& operator=(Header&& from) noexcept {
-    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
-      if (this != &from) InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-  #endif
-  static const ::google::protobuf::Descriptor* descriptor();
-  static const Header& default_instance();
-
-  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
-  static inline const Header* internal_default_instance() {
-    return reinterpret_cast<const Header*>(
-               &_Header_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    0;
-
-  void Swap(Header* other);
-  friend void swap(Header& a, Header& b) {
-    a.Swap(&b);
-  }
-
-  // implements Message ----------------------------------------------
-
-  inline Header* New() const final {
-    return CreateMaybeMessage<Header>(NULL);
-  }
-
-  Header* New(::google::protobuf::Arena* arena) const final {
-    return CreateMaybeMessage<Header>(arena);
-  }
-  void CopyFrom(const ::google::protobuf::Message& from) final;
-  void MergeFrom(const ::google::protobuf::Message& from) final;
-  void CopyFrom(const Header& from);
-  void MergeFrom(const Header& from);
-  void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  bool MergePartialFromCodedStream(
-      ::google::protobuf::io::CodedInputStream* input) final;
-  void SerializeWithCachedSizes(
-      ::google::protobuf::io::CodedOutputStream* output) const final;
-  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
-      bool deterministic, ::google::protobuf::uint8* target) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
-
-  private:
-  void SharedCtor();
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(Header* other);
-  private:
-  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
-    return NULL;
-  }
-  inline void* MaybeArenaPtr() const {
-    return NULL;
-  }
-  public:
-
-  ::google::protobuf::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  // uint32 seq = 1;
-  void clear_seq();
-  static const int kSeqFieldNumber = 1;
-  ::google::protobuf::uint32 seq() const;
-  void set_seq(::google::protobuf::uint32 value);
-
-  // uint32 stamp_second = 2;
-  void clear_stamp_second();
-  static const int kStampSecondFieldNumber = 2;
-  ::google::protobuf::uint32 stamp_second() const;
-  void set_stamp_second(::google::protobuf::uint32 value);
-
-  // uint32 stamp_nsecond = 3;
-  void clear_stamp_nsecond();
-  static const int kStampNsecondFieldNumber = 3;
-  ::google::protobuf::uint32 stamp_nsecond() const;
-  void set_stamp_nsecond(::google::protobuf::uint32 value);
-
-  // @@protoc_insertion_point(class_scope:Header)
- private:
-
-  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  ::google::protobuf::uint32 seq_;
-  ::google::protobuf::uint32 stamp_second_;
-  ::google::protobuf::uint32 stamp_nsecond_;
-  mutable ::google::protobuf::internal::CachedSize _cached_size_;
-  friend struct ::protobuf_messages_5fparsian_5fsimurosot_5fdata_5fwrapper_2eproto::TableStruct;
-};
-// -------------------------------------------------------------------
 
 class DataWrapper : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:DataWrapper) */ {
  public:
@@ -215,7 +93,7 @@ class DataWrapper : public ::google::protobuf::Message /* @@protoc_insertion_poi
                &_DataWrapper_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    1;
+    0;
 
   void Swap(DataWrapper* other);
   friend void swap(DataWrapper& a, DataWrapper& b) {
@@ -267,18 +145,6 @@ class DataWrapper : public ::google::protobuf::Message /* @@protoc_insertion_poi
 
   // accessors -------------------------------------------------------
 
-  // .Header header = 1;
-  bool has_header() const;
-  void clear_header();
-  static const int kHeaderFieldNumber = 1;
-  private:
-  const ::Header& _internal_header() const;
-  public:
-  const ::Header& header() const;
-  ::Header* release_header();
-  ::Header* mutable_header();
-  void set_allocated_header(::Header* header);
-
   // .Draws draws = 2;
   bool has_draws() const;
   void clear_draws();
@@ -291,34 +157,10 @@ class DataWrapper : public ::google::protobuf::Message /* @@protoc_insertion_poi
   ::Draws* mutable_draws();
   void set_allocated_draws(::Draws* draws);
 
-  // .Logs debugs = 3;
-  bool has_debugs() const;
-  void clear_debugs();
-  static const int kDebugsFieldNumber = 3;
-  private:
-  const ::Logs& _internal_debugs() const;
-  public:
-  const ::Logs& debugs() const;
-  ::Logs* release_debugs();
-  ::Logs* mutable_debugs();
-  void set_allocated_debugs(::Logs* debugs);
-
-  // .Frame detection = 4;
-  bool has_detection() const;
-  void clear_detection();
-  static const int kDetectionFieldNumber = 4;
-  private:
-  const ::Frame& _internal_detection() const;
-  public:
-  const ::Frame& detection() const;
-  ::Frame* release_detection();
-  ::Frame* mutable_detection();
-  void set_allocated_detection(::Frame* detection);
-
-  // .WorldModel worldmodel = 5;
+  // .WorldModel worldmodel = 3;
   bool has_worldmodel() const;
   void clear_worldmodel();
-  static const int kWorldmodelFieldNumber = 5;
+  static const int kWorldmodelFieldNumber = 3;
   private:
   const ::WorldModel& _internal_worldmodel() const;
   public:
@@ -327,15 +169,19 @@ class DataWrapper : public ::google::protobuf::Message /* @@protoc_insertion_poi
   ::WorldModel* mutable_worldmodel();
   void set_allocated_worldmodel(::WorldModel* worldmodel);
 
+  // uint32 seq = 1;
+  void clear_seq();
+  static const int kSeqFieldNumber = 1;
+  ::google::protobuf::uint32 seq() const;
+  void set_seq(::google::protobuf::uint32 value);
+
   // @@protoc_insertion_point(class_scope:DataWrapper)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  ::Header* header_;
   ::Draws* draws_;
-  ::Logs* debugs_;
-  ::Frame* detection_;
   ::WorldModel* worldmodel_;
+  ::google::protobuf::uint32 seq_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::protobuf_messages_5fparsian_5fsimurosot_5fdata_5fwrapper_2eproto::TableStruct;
 };
@@ -348,106 +194,20 @@ class DataWrapper : public ::google::protobuf::Message /* @@protoc_insertion_poi
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
-// Header
-
-// uint32 seq = 1;
-inline void Header::clear_seq() {
-  seq_ = 0u;
-}
-inline ::google::protobuf::uint32 Header::seq() const {
-  // @@protoc_insertion_point(field_get:Header.seq)
-  return seq_;
-}
-inline void Header::set_seq(::google::protobuf::uint32 value) {
-  
-  seq_ = value;
-  // @@protoc_insertion_point(field_set:Header.seq)
-}
-
-// uint32 stamp_second = 2;
-inline void Header::clear_stamp_second() {
-  stamp_second_ = 0u;
-}
-inline ::google::protobuf::uint32 Header::stamp_second() const {
-  // @@protoc_insertion_point(field_get:Header.stamp_second)
-  return stamp_second_;
-}
-inline void Header::set_stamp_second(::google::protobuf::uint32 value) {
-  
-  stamp_second_ = value;
-  // @@protoc_insertion_point(field_set:Header.stamp_second)
-}
-
-// uint32 stamp_nsecond = 3;
-inline void Header::clear_stamp_nsecond() {
-  stamp_nsecond_ = 0u;
-}
-inline ::google::protobuf::uint32 Header::stamp_nsecond() const {
-  // @@protoc_insertion_point(field_get:Header.stamp_nsecond)
-  return stamp_nsecond_;
-}
-inline void Header::set_stamp_nsecond(::google::protobuf::uint32 value) {
-  
-  stamp_nsecond_ = value;
-  // @@protoc_insertion_point(field_set:Header.stamp_nsecond)
-}
-
-// -------------------------------------------------------------------
-
 // DataWrapper
 
-// .Header header = 1;
-inline bool DataWrapper::has_header() const {
-  return this != internal_default_instance() && header_ != NULL;
+// uint32 seq = 1;
+inline void DataWrapper::clear_seq() {
+  seq_ = 0u;
 }
-inline void DataWrapper::clear_header() {
-  if (GetArenaNoVirtual() == NULL && header_ != NULL) {
-    delete header_;
-  }
-  header_ = NULL;
+inline ::google::protobuf::uint32 DataWrapper::seq() const {
+  // @@protoc_insertion_point(field_get:DataWrapper.seq)
+  return seq_;
 }
-inline const ::Header& DataWrapper::_internal_header() const {
-  return *header_;
-}
-inline const ::Header& DataWrapper::header() const {
-  const ::Header* p = header_;
-  // @@protoc_insertion_point(field_get:DataWrapper.header)
-  return p != NULL ? *p : *reinterpret_cast<const ::Header*>(
-      &::_Header_default_instance_);
-}
-inline ::Header* DataWrapper::release_header() {
-  // @@protoc_insertion_point(field_release:DataWrapper.header)
+inline void DataWrapper::set_seq(::google::protobuf::uint32 value) {
   
-  ::Header* temp = header_;
-  header_ = NULL;
-  return temp;
-}
-inline ::Header* DataWrapper::mutable_header() {
-  
-  if (header_ == NULL) {
-    auto* p = CreateMaybeMessage<::Header>(GetArenaNoVirtual());
-    header_ = p;
-  }
-  // @@protoc_insertion_point(field_mutable:DataWrapper.header)
-  return header_;
-}
-inline void DataWrapper::set_allocated_header(::Header* header) {
-  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
-  if (message_arena == NULL) {
-    delete header_;
-  }
-  if (header) {
-    ::google::protobuf::Arena* submessage_arena = NULL;
-    if (message_arena != submessage_arena) {
-      header = ::google::protobuf::internal::GetOwnedMessage(
-          message_arena, header, submessage_arena);
-    }
-    
-  } else {
-    
-  }
-  header_ = header;
-  // @@protoc_insertion_point(field_set_allocated:DataWrapper.header)
+  seq_ = value;
+  // @@protoc_insertion_point(field_set:DataWrapper.seq)
 }
 
 // .Draws draws = 2;
@@ -498,103 +258,7 @@ inline void DataWrapper::set_allocated_draws(::Draws* draws) {
   // @@protoc_insertion_point(field_set_allocated:DataWrapper.draws)
 }
 
-// .Logs debugs = 3;
-inline bool DataWrapper::has_debugs() const {
-  return this != internal_default_instance() && debugs_ != NULL;
-}
-inline const ::Logs& DataWrapper::_internal_debugs() const {
-  return *debugs_;
-}
-inline const ::Logs& DataWrapper::debugs() const {
-  const ::Logs* p = debugs_;
-  // @@protoc_insertion_point(field_get:DataWrapper.debugs)
-  return p != NULL ? *p : *reinterpret_cast<const ::Logs*>(
-      &::_Logs_default_instance_);
-}
-inline ::Logs* DataWrapper::release_debugs() {
-  // @@protoc_insertion_point(field_release:DataWrapper.debugs)
-  
-  ::Logs* temp = debugs_;
-  debugs_ = NULL;
-  return temp;
-}
-inline ::Logs* DataWrapper::mutable_debugs() {
-  
-  if (debugs_ == NULL) {
-    auto* p = CreateMaybeMessage<::Logs>(GetArenaNoVirtual());
-    debugs_ = p;
-  }
-  // @@protoc_insertion_point(field_mutable:DataWrapper.debugs)
-  return debugs_;
-}
-inline void DataWrapper::set_allocated_debugs(::Logs* debugs) {
-  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
-  if (message_arena == NULL) {
-    delete reinterpret_cast< ::google::protobuf::MessageLite*>(debugs_);
-  }
-  if (debugs) {
-    ::google::protobuf::Arena* submessage_arena = NULL;
-    if (message_arena != submessage_arena) {
-      debugs = ::google::protobuf::internal::GetOwnedMessage(
-          message_arena, debugs, submessage_arena);
-    }
-    
-  } else {
-    
-  }
-  debugs_ = debugs;
-  // @@protoc_insertion_point(field_set_allocated:DataWrapper.debugs)
-}
-
-// .Frame detection = 4;
-inline bool DataWrapper::has_detection() const {
-  return this != internal_default_instance() && detection_ != NULL;
-}
-inline const ::Frame& DataWrapper::_internal_detection() const {
-  return *detection_;
-}
-inline const ::Frame& DataWrapper::detection() const {
-  const ::Frame* p = detection_;
-  // @@protoc_insertion_point(field_get:DataWrapper.detection)
-  return p != NULL ? *p : *reinterpret_cast<const ::Frame*>(
-      &::_Frame_default_instance_);
-}
-inline ::Frame* DataWrapper::release_detection() {
-  // @@protoc_insertion_point(field_release:DataWrapper.detection)
-  
-  ::Frame* temp = detection_;
-  detection_ = NULL;
-  return temp;
-}
-inline ::Frame* DataWrapper::mutable_detection() {
-  
-  if (detection_ == NULL) {
-    auto* p = CreateMaybeMessage<::Frame>(GetArenaNoVirtual());
-    detection_ = p;
-  }
-  // @@protoc_insertion_point(field_mutable:DataWrapper.detection)
-  return detection_;
-}
-inline void DataWrapper::set_allocated_detection(::Frame* detection) {
-  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
-  if (message_arena == NULL) {
-    delete reinterpret_cast< ::google::protobuf::MessageLite*>(detection_);
-  }
-  if (detection) {
-    ::google::protobuf::Arena* submessage_arena = NULL;
-    if (message_arena != submessage_arena) {
-      detection = ::google::protobuf::internal::GetOwnedMessage(
-          message_arena, detection, submessage_arena);
-    }
-    
-  } else {
-    
-  }
-  detection_ = detection;
-  // @@protoc_insertion_point(field_set_allocated:DataWrapper.detection)
-}
-
-// .WorldModel worldmodel = 5;
+// .WorldModel worldmodel = 3;
 inline bool DataWrapper::has_worldmodel() const {
   return this != internal_default_instance() && worldmodel_ != NULL;
 }
@@ -645,8 +309,6 @@ inline void DataWrapper::set_allocated_worldmodel(::WorldModel* worldmodel) {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
-// -------------------------------------------------------------------
-
 
 // @@protoc_insertion_point(namespace_scope)
 
