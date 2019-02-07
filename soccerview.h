@@ -126,10 +126,11 @@ private:
     void drawTriangle(vector2d loc1, vector2d loc2, vector2d loc3, double z);
     void drawQuad(vector2d loc1, vector2d loc2, double z=0.0, bool fill = true);
     void drawQuad(double x1, double y1, double x2, double y2, double z=0.0, bool fill = true){drawQuad(vector2d(x1,y1),vector2d(x2,y2),z, fill);}
-    void drawArc(vector2d loc, double r1, double r2, double theta1, double theta2, double z=0.0, double dTheta = -1, bool fill = false);
-    void drawArc(double x, double y, double r1, double r2, double theta1, double theta2, double z=0.0, double dTheta = -1, bool fill = false){drawArc(vector2d(x,y),r1,r2,theta1,theta2,z,dTheta,fill);}
+    void drawArc(vector2d loc, double r1, double r2, double theta1, double theta2, double z=0.0, double dTheta = -1);
+    void drawArc(double x, double y, double r1, double r2, double theta1, double theta2, double z=0.0, double dTheta = -1) {drawArc(vector2d(x,y),r1,r2,theta1,theta2,z,dTheta);}
     void drawPoint(double x, double y, double z);
     void drawLine(double x1, double y1, double x2, double y2, double z);
+    void drawVectors(const double& x, const double& y, const double& size, const QColor& color);
     void recomputeProjection();
     void drawRobot(vector2d loc, double theta, double conf, int robotID, int team, bool hasAngle);
     void drawRobot(int team, bool hasAngle, bool useDisplayLists);
@@ -151,8 +152,6 @@ protected:
 public:
     GLSoccerView(QWidget *parent = 0);
     void updatePacket(const DataWrapper& _packet);
-    void updateFrame(const Frame &_frame);
-    void updateDetection(const Frame& _frame);
     void updateWorldModel(const WorldModel& _wm);
 public slots:
     void resetView();

@@ -19,9 +19,7 @@ protected:
     void run()
     {
         QUdpSocket* socket = new QUdpSocket();
-        socket->bind(QHostAddress("127.0.0.1"), 10040, QUdpSocket::ShareAddress);
-//        socket->joinMulticastGroup(QHostAddress("224.5.23.2"));
-        DataWrapper packet;
+        socket->bind(QHostAddress("172.21.224.130"), 10030, QUdpSocket::ShareAddress);
         while(runApp) {
             while (socket->hasPendingDatagrams()) {
                 QByteArray Buffer;
@@ -29,12 +27,9 @@ protected:
                 QHostAddress sender;
                 quint16 senderPort;
                 socket->readDatagram(Buffer.data(),Buffer.size(),&sender,&senderPort);
-                WorldModel head;
-                if (head.ParsePartialFromArray(Buffer.data(), Buffer.size())) {
-                    qDebug() << Buffer.size();
-                    //if(head.has_ball() && head.robots_blue_size() == 5 && head.robots_yellow_size() == 5) {
-                        view->updateWorldModel(head);
-                    //}
+                DataWrapper packet;
+                if (packet.ParsePartialFromArray(Buffer.data(), Buffer.size())) {
+                    view->updatePacket(packet);
                 } else {
                     qDebug() << Buffer.data() << "FAILED TO PARSE";
                 }

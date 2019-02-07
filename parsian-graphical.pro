@@ -21,7 +21,6 @@ SOURCES += main.cpp\
     field.cpp \
     msg/cpp/messages_parsian_simurosot_data_wrapper.pb.cc \
     msg/cpp/messages_parsian_simurosot_debugs.pb.cc \
-    msg/cpp/messages_parsian_simurosot_detection.pb.cc \
     msg/cpp/messages_parsian_simurosot_worldmodel.pb.cc
 
 HEADERS  += mainwindow.h \
@@ -40,7 +39,6 @@ HEADERS  += mainwindow.h \
     util.h \
     msg/cpp/messages_parsian_simurosot_data_wrapper.pb.h \
     msg/cpp/messages_parsian_simurosot_debugs.pb.h \
-    msg/cpp/messages_parsian_simurosot_detection.pb.h \
     msg/cpp/messages_parsian_simurosot_worldmodel.pb.h
 
 MOC_DIR = objs
