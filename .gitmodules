@@ -1,3 +1,0 @@
-[submodule "proto"]
-	path = proto
-	url = git@gitlab.com:ParsianSoftware/simurosot/parsian-proto.git
