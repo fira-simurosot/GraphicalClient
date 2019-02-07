@@ -19,10 +19,10 @@ SOURCES += main.cpp\
     soccerview.cpp \
     field_default_constants.cpp \
     field.cpp \
-    proto/cpp/messages_parsian_simurosot_data_wrapper.pb.cc \
-    proto/cpp/messages_parsian_simurosot_debugs.pb.cc \
-    proto/cpp/messages_parsian_simurosot_detection.pb.cc \
-    proto/cpp/messages_parsian_simurosot_worldmodel.pb.cc
+    msg/cpp/messages_parsian_simurosot_data_wrapper.pb.cc \
+    msg/cpp/messages_parsian_simurosot_debugs.pb.cc \
+    msg/cpp/messages_parsian_simurosot_detection.pb.cc \
+    msg/cpp/messages_parsian_simurosot_worldmodel.pb.cc
 
 HEADERS  += mainwindow.h \
     gltext.h \
@@ -38,15 +38,15 @@ HEADERS  += mainwindow.h \
     quaternion.h \
     range.h \
     util.h \
-    proto/cpp/messages_parsian_simurosot_data_wrapper.pb.h \
-    proto/cpp/messages_parsian_simurosot_debugs.pb.h \
-    proto/cpp/messages_parsian_simurosot_detection.pb.h \
-    proto/cpp/messages_parsian_simurosot_worldmodel.pb.h
+    msg/cpp/messages_parsian_simurosot_data_wrapper.pb.h \
+    msg/cpp/messages_parsian_simurosot_debugs.pb.h \
+    msg/cpp/messages_parsian_simurosot_detection.pb.h \
+    msg/cpp/messages_parsian_simurosot_worldmodel.pb.h
 
 MOC_DIR = objs
 OBJECTS_DIR = objs
 
-INCLUDEPATH+=proto/cpp
+INCLUDEPATH+=msg/cpp
 INCLUDEPATH+=/usr/local/Cellar/protobuf/3.6.1.3_1/include
 LIBS+=-L/usr/local/Cellar/protobuf/3.6.1.3_1/lib/ -lprotobuf -lprotobuf-lite
 
