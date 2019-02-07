@@ -43,6 +43,12 @@ HEADERS  += mainwindow.h \
     proto/cpp/messages_parsian_simurosot_detection.pb.h \
     proto/cpp/messages_parsian_simurosot_worldmodel.pb.h
 
+MOC_DIR = objs
+OBJECTS_DIR = objs
+
 INCLUDEPATH+=proto/cpp
-INCLUDEPATH+=/usr/local/Cellar/protobuf/3.6.0/include
-LIBS+=-L/usr/local/Cellar/protobuf/3.6.0/lib/ -lprotobuf -lprotobuf-lite
+INCLUDEPATH+=/usr/local/Cellar/protobuf/3.6.1.3_1/include
+LIBS+=-L/usr/local/Cellar/protobuf/3.6.1.3_1/lib/ -lprotobuf -lprotobuf-lite
+
+RESOURCES += \
+    resource.qrc
