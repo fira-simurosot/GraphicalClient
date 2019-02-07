@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+import "messages_parsian_simurosot_worldmodel.proto";
+import "messages_parsian_simurosot_debugs.proto";
+
+message DataWrapper {
+	uint32 seq            = 1;
+	Draws draws           = 2;
+	WorldModel worldmodel = 3;
+	
+}
